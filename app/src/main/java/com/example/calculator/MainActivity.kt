@@ -75,7 +75,7 @@ class MainActivity : ComponentActivity() {
         //case-3
         else if (btnText == "=") {
             clearScreen(binding.textExpression)
-            doCalculate( binding.textExpression.text.toString())
+//            doCalculate( binding.textExpression.text.toString())
         }
         //case-4
         else if (btnText == "EXP") {
