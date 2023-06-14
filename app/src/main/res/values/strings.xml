@@ -1,9 +1,9 @@
 <resources>
     <string name="app_name">Calculator</string>
     <string name="ac">AC</string>
-    <string name="backspace">B</string>
+    <string name="backspace">C</string>
     <string name="modulo">%</string>
-    <string name="divide">di</string>
+    <string name="divide">/</string>
     <string name="_7">7</string>
     <string name="_8">8</string>
     <string name="_9">9</string>
