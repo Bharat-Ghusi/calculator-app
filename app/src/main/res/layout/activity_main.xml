@@ -54,6 +54,7 @@
             android:id="@+id/btn_ac"
             style="@style/style_secondaryBtn"
             android:text="@string/ac"
+            android:onClick="onClearScreen"
             app:layout_constraintBaseline_toBaselineOf="@+id/btn_modulo"
             app:layout_constraintEnd_toStartOf="@+id/btn_backspace"
             app:layout_constraintStart_toStartOf="parent"></Button>
@@ -63,6 +64,7 @@
             style="@style/style_secondaryBtn"
             android:src="@drawable/backspace"
             android:text="@string/backspace"
+            android:onClick="onBackSpaceClick"
             app:layout_constraintEnd_toStartOf="@+id/btn_modulo"
             app:layout_constraintStart_toEndOf="@+id/btn_ac"
             app:layout_constraintBottom_toTopOf="@+id/btn_9"></Button>
@@ -202,6 +204,7 @@
             android:id="@+id/btn_expand"
             style="@style/style_secondaryBtn"
             android:text="@string/exp"
+            android:onClick="onExpandClick"
             app:layout_constraintBaseline_toBaselineOf="@+id/btn_dot"
             app:layout_constraintEnd_toStartOf="@+id/btn_0"
             app:layout_constraintStart_toStartOf="parent"></Button>
