@@ -13,12 +13,18 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.core.text.isDigitsOnly
 import androidx.databinding.DataBindingUtil
 import com.example.calculator.databinding.ActivityMainBinding
+import com.example.calculator.service.Eval
 import com.example.calculator.ui.theme.CalculatorTheme
 
 class MainActivity : ComponentActivity() {
     private lateinit var binding: ActivityMainBinding
+    private var prevResult: Double = 0.0
+    private var operator: String = "+" //Default
+    private val eval: Eval = Eval()
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_main)
@@ -39,13 +45,15 @@ class MainActivity : ComponentActivity() {
             btn7.setOnClickListener { updateExpressionTv(btn7) }
             btn8.setOnClickListener { updateExpressionTv(btn8) }
             btn9.setOnClickListener { updateExpressionTv(btn9) }
-            btnAc.setOnClickListener { updateExpressionTv(btnAc) }
-            btnBackspace.setOnClickListener { updateExpressionTv(btnBackspace) }
-            btnModulo.setOnClickListener { updateExpressionTv(btnModulo) }
+
+            btnPlus.setOnClickListener { updateExpressionTv(btnPlus) }
+            btnMinus.setOnClickListener { updateExpressionTv(btnMinus) }
             btnDivide.setOnClickListener { updateExpressionTv(btnDivide) }
             btnProduct.setOnClickListener { updateExpressionTv(btnProduct) }
-            btnMinus.setOnClickListener { updateExpressionTv(btnMinus) }
-            btnPlus.setOnClickListener { updateExpressionTv(btnPlus) }
+            btnModulo.setOnClickListener { updateExpressionTv(btnModulo) }
+
+            btnAc.setOnClickListener { updateExpressionTv(btnAc) }
+            btnBackspace.setOnClickListener { updateExpressionTv(btnBackspace) }
             btnEqualTO.setOnClickListener { updateExpressionTv(btnEqualTO) }
             btnDot.setOnClickListener { updateExpressionTv(btnDot) }
             btnExpand.setOnClickListener { updateExpressionTv(btnExpand) }
@@ -53,7 +61,7 @@ class MainActivity : ComponentActivity() {
     }
 
     //Clear screen
-    private fun clearScreen(textView: TextView){
+    private fun clearScreen(textView: TextView) {
         textView.text = ""
     }
 
@@ -61,46 +69,56 @@ class MainActivity : ComponentActivity() {
     //Update Expression Tv onClick
     private fun updateExpressionTv(btn: Button) {
         val btnText = btn.text.toString()
+        val expression = binding.textExpression.text.toString()
         //case-1
         if (btnText == "AC") {
             clearScreen(binding.textExpression)
         }
         //case-2
-        else if (btnText == "C") {
-            binding.textExpression.text = binding.textExpression.text.substring(
-                0,
-                binding.textExpression.text.toString().length - 1
-            )
+        else if (btnText == "C" && binding.textExpression.text.toString().isNotEmpty()) {
+            binding.textExpression.text = binding.textExpression.text.substring(0,
+                binding.textExpression.text.toString().length - 1 )
         }
         //case-3
         else if (btnText == "=") {
             clearScreen(binding.textExpression)
-//            doCalculate( binding.textExpression.text.toString())
+            binding.textResult.text = eval.evaluate(expression)
+            clearScreen(binding.textExpression)
         }
         //case-4
         else if (btnText == "EXP") {
 
         }
-        //case 5
-        else {
+        //case-5 onClick digit and Operator
+        else if(btn.text.toString() != "C") {
+            //Set on exp Tv
             binding.textExpression.text = binding.textExpression.text.toString() + btnText
+            //Set result on Result TV
+            doCalculate(prevResult, btnText, operator)
         }
+
 
     }
 
-    private fun doCalculate(exp: String){
-        var operand1: String
-        var operand2:String
-        var operator: String
-//        for (ch in exp){
-//            if(isOperator(ch)) operator = operator + ch
-//        }
+    private fun doCalculate(result: Double, newOperand: String, operator: String): Double {
+        setResultTv(result)
+        return result
     }
 
     //Check if token of expression is operator
-    private fun isOperator(ch: Char):Boolean{
-       return (ch == '+' || ch == '-' || ch == 'x' || ch == '/' || ch == '%')
+    private fun isOperator(ch: Char): Boolean {
+        return (ch == '+' || ch == '-' || ch == 'x' || ch == '/' || ch == '%')
     }
+
+    //Set result Tv
+    private fun setResultTv(result: Double) {
+
+    }
+
+//    fun onOperatorClick(view: View) {
+//        operator = (view as Button).text.toString() //Update latest operator
+//
+//    }
 
 }
 
