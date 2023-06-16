@@ -85,7 +85,6 @@ class MainActivity : ComponentActivity() {
             binding.textExpression.text = "0"
         }
         binding.textExpression.text = binding.textExpression.text.toString() + (view as Button).text
-
     }
 
 

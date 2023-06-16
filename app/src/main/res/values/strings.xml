@@ -2,6 +2,7 @@
     <string name="app_name">Calculator</string>
     <string name="ac">AC</string>
     <string name="backspace">C</string>
+    <string name="power">^</string>
     <string name="modulo">%</string>
     <string name="divide">/</string>
     <string name="_7">7</string>
@@ -16,7 +17,7 @@
     <string name="_2">2</string>
     <string name="_3">3</string>
     <string name="plus">+</string>
-    <string name="exp">Exp</string>
+    <string name="exp">^</string>
     <string name="_0">0</string>
     <string name="dot">.</string>
     <string name="equalTo">=</string>
