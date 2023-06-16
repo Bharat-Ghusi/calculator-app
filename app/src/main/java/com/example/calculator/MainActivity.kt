@@ -54,7 +54,7 @@ class MainActivity : ComponentActivity() {
             btnModulo.setOnClickListener { onOperatorClick(btnModulo) }
 
             btnAc.setOnClickListener { onClearScreen(btnAc) }
-            btnEqualTO.setOnClickListener { onEqualToClick(btnEqualTO) }
+            btnEqualTo.setOnClickListener { onEqualToClick(btnEqualTo) }
             btnBackspace.setOnClickListener { onBackSpaceClick(btnBackspace) }
             btnDot.setOnClickListener { onDigitClick(btnDot) }
             btnExpand.setOnClickListener { onExpandClick(btnExpand) }
