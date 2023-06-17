@@ -86,7 +86,7 @@ class Eval {
         return when (exp[operatorIndex]) {
             '+' -> num1.toDouble() + num2.toDouble()
             '-' -> num1.toDouble() - num2.toDouble()
-            '/' -> if (num2.toDouble() != 0.0) num1.toDouble() / num2.toDouble() else throw ArithmeticException(
+            '÷' -> if (num2.toDouble() != 0.0) num1.toDouble() / num2.toDouble() else throw ArithmeticException(
                 "Cannot divide by zero."
             )
 

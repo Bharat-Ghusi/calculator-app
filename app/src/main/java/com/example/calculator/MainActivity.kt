@@ -20,6 +20,7 @@ import androidx.core.text.isDigitsOnly
 import androidx.databinding.DataBindingUtil
 import com.example.calculator.databinding.ActivityMainBinding
 import com.example.calculator.service.Eval
+import com.example.calculator.service.Evaluation
 import com.example.calculator.ui.theme.CalculatorTheme
 
 class MainActivity : ComponentActivity() {
@@ -27,6 +28,7 @@ class MainActivity : ComponentActivity() {
     private var prevResult: Double = 0.0
     private var operator: String = "+" //Default
     private val eval: Eval = Eval()
+    private val evaluation: Evaluation = Evaluation()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -63,40 +65,43 @@ class MainActivity : ComponentActivity() {
         }
     }
 
-    //Clear screen
-    private fun clearScreen(textView: TextView) {
-        textView.text = ""
-    }
-
-
-
-
     fun onDigitClick(view: View) {
+        val btn = (view as AppCompatButton)
         //        set textExpression tv visibility
-        binding.textExpression.visibility = View.VISIBLE
-        //Set on exp Tv
-        binding.textExpression.text = binding.textExpression.text.toString() + (view as Button).text
+
+        binding.textExpression.visibility = View.VISIBLE // [BUG everytime setting visibility]
+        //Dot Evaluation(frequency) if all set than concatenate
+        if (btn.text.toString() == "." && ! evaluation.dotEvaluate(view, binding)) {
+            return
+        } else
+
+        //Set on exp Tv (Concatenating digit & dot)
+            binding.textExpression.text =
+                binding.textExpression.text.toString() + (view as Button).text
 
     }
 
     fun onOperatorClick(view: View) {
 //        set textExpression tv visibility
         binding.textExpression.visibility = View.VISIBLE
-        //Set on exp Tv
-        if(binding.textExpression.text.isEmpty()){
-            binding.textExpression.text = "0"
-        }
-        binding.textExpression.text = binding.textExpression.text.toString() + (view as AppCompatImageButton).contentDescription
+        evaluation.setOperator(view, binding)
+//        binding.textExpression.text =
+//            binding.textExpression.text.toString() + (view as AppCompatImageButton).contentDescription
     }
 
 
     fun onEqualToClick(view: View) {
-        //case-3
+        //case-1 remove dot or any operator if it is suffix of expression.
+        val exp = binding.textExpression.text.toString()
+        if(! evaluation.evaluateEqualTo(binding.textExpression.text.toString())){
+            binding.textExpression.text = exp.substring(0,exp.length-1)
+        }
 
-        binding.textResult.text ="= " + eval.evaluate(binding.textExpression.text.toString())
-        binding.textExpression.text = binding.textResult.text.removePrefix("= ")
-        //Make expression TV invisible
-        binding.textExpression.visibility = View.INVISIBLE
+            binding.textResult.text = "= " + eval.evaluate(binding.textExpression.text.toString())
+            binding.textExpression.text = binding.textResult.text.removePrefix("= ")
+            //Make expression TV invisible
+            binding.textExpression.visibility = View.INVISIBLE
+
 
     }
 
