@@ -7,6 +7,8 @@ import android.widget.Button
 import android.widget.TextView
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import androidx.appcompat.widget.AppCompatButton
+import androidx.appcompat.widget.AppCompatImageButton
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
@@ -84,7 +86,7 @@ class MainActivity : ComponentActivity() {
         if(binding.textExpression.text.isEmpty()){
             binding.textExpression.text = "0"
         }
-        binding.textExpression.text = binding.textExpression.text.toString() + (view as Button).text
+        binding.textExpression.text = binding.textExpression.text.toString() + (view as AppCompatImageButton).contentDescription
     }
 
 

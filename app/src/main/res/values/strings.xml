@@ -4,7 +4,7 @@
     <string name="backspace">C</string>
     <string name="power">^</string>
     <string name="modulo">%</string>
-    <string name="divide">/</string>
+    <string name="divide">÷</string>
     <string name="_7">7</string>
     <string name="_8">8</string>
     <string name="_9">9</string>
@@ -21,4 +21,7 @@
     <string name="_0">0</string>
     <string name="dot">.</string>
     <string name="equalTo">=</string>
+    <string name="pi">π</string>
+    <string name="root">√</string>
+    <string name="c">C</string>
 </resources>

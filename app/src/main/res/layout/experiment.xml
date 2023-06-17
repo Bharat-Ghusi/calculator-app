@@ -17,6 +17,14 @@
         android:layout_height="0dp"
         android:layout_weight="1"></androidx.appcompat.widget.AppCompatTextView>
 
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/myButton"
+        android:layout_width="134dp"
+        android:layout_height="wrap_content"
+        app:cornerRadius="4dp"
+        app:icon="@drawable/outline_backspace_24"
+        app:iconGravity="start" />
+
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
@@ -145,11 +153,14 @@
             app:layout_constraintStart_toEndOf="@id/btn_root"
             app:layout_constraintTop_toBottomOf="@id/btn_log" />
 
-        <androidx.appcompat.widget.AppCompatButton
+        <Button
             android:id="@+id/btn_backspace"
             android:layout_width="0dp"
             android:layout_height="0dp"
+            android:gravity="center"
             android:text="C"
+
+
             app:layout_constraintBottom_toTopOf="@+id/btn_8"
             app:layout_constraintEnd_toStartOf="@id/btn_modulo"
             app:layout_constraintStart_toEndOf="@id/btn_ac"
