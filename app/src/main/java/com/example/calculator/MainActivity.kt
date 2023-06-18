@@ -157,7 +157,8 @@ class MainActivity : ComponentActivity() {
     }
 
     fun onExpandClick(view: View) {
-        //case-4
+       //Make all special button visible
+
 
     }
 

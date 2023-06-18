@@ -8,7 +8,7 @@ class Eval {
 
 
     private fun findPrecedence(char: Char): Pair<Int, Boolean> {
-        return if (char.lowercaseChar() == 'x' || char == '/' || char == '%') Pair(
+        return if (char.lowercaseChar() == 'x' || char == '÷' || char == '%') Pair(
             3,
             true
         ) else if (char == '+' || char == '-') Pair(4, true) else Pair(20, false) //If digit
