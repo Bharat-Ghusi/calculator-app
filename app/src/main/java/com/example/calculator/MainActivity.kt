@@ -77,18 +77,29 @@ class MainActivity : ComponentActivity() {
         if (btn.text.toString() == "." && !evaluation.dotEvaluate(view, binding)) {
             return
         } else
-
+            //After equalTo if digit is press then start the expression from fresh
+        if(binding.textResult.text.isNotEmpty()){
+            binding.textResult.text = ""
+            binding.textExpression.text = (view as Button).text
+        }
+        else
         //Set on exp Tv (Concatenating digit & dot)
+
             binding.textExpression.text =
                 binding.textExpression.text.toString() + (view as Button).text
 
     }
 
     fun onOperatorClick(view: View) {
+        //After equalTo if operator is press then concat the result and operator and set it to expression
+        if(binding.textResult.text.isNotEmpty()){
+            binding.textExpression.text = binding.textResult.text.removePrefix("= ")
+            binding.textResult.text = ""
+        }
+
         isResultConsoleHighlighted = false
         updateExpressionTvHighlight()
 //        set textExpression tv visibility
-        binding.textExpression.visibility = View.VISIBLE
         evaluation.setOperator(view, binding)
 //        binding.textExpression.text =
 //            binding.textExpression.text.toString() + (view as AppCompatImageButton).contentDescription
@@ -117,13 +128,12 @@ class MainActivity : ComponentActivity() {
         updateResultTvHighlight()
         //Make expression TV non highlight
         //case-1 remove dot or any operator if it is suffix of expression.
-        val exp = binding.textExpression.text.toString()
-        if (!evaluation.evaluateEqualTo(binding.textExpression.text.toString())) {
-            binding.textExpression.text = exp.substring(0, exp.length - 1)
+        while (!evaluation.evaluateEqualTo(binding.textExpression.text.toString())) {
+            binding.textExpression.text = binding.textExpression.text.substring(0, binding.textExpression.text.length - 1)
         }
 
         binding.textResult.text = "= " + eval.evaluate(binding.textExpression.text.toString())
-        binding.textExpression.text = binding.textResult.text.removePrefix("= ")
+//        binding.textExpression.text = binding.textResult.text.removePrefix("= ")
 
 
     }
@@ -133,7 +143,7 @@ class MainActivity : ComponentActivity() {
         binding.textExpression.visibility = View.VISIBLE
         //case-1
         binding.textExpression.text = ""
-        binding.textResult.text = "0"
+        binding.textResult.text = ""
     }
 
     fun onBackSpaceClick(view: View) {

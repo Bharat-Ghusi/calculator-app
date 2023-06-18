@@ -9,10 +9,11 @@ class Evaluation {
     //Checks for operator
     fun setOperator(view: View, binding: ActivityMainBinding) {
         val exp = binding.textExpression.text
+        val result = binding.textResult.text
         val operator = (view as AppCompatImageButton).contentDescription
-
+        //case-1 After
         //Case-2 If expression console is empty than set expression console to zero
-        if (exp.isEmpty()) {
+      if (exp.isEmpty()) {
             binding.textExpression.text =  binding.textExpression.text.toString() + "0" + (view as AppCompatImageButton).contentDescription
         }
 
