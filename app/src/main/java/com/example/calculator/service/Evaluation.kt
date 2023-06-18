@@ -12,7 +12,9 @@ class Evaluation {
         val operator = (view as AppCompatImageButton).contentDescription
 
         //Case-2 If expression console is empty than set expression console to zero
-        if (exp.isEmpty()) binding.textExpression.text = "0"
+        if (exp.isEmpty()) {
+            binding.textExpression.text =  binding.textExpression.text.toString() + "0" + (view as AppCompatImageButton).contentDescription
+        }
 
         //Case-1 One operator allowed after a digit
        else if (! isOperator(exp[exp.length - 1])) binding.textExpression.text =
