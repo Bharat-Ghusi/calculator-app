@@ -8,35 +8,34 @@
         android:layout_height="match_parent"
         android:orientation="vertical">
 
-        <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/text_history"
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:textAlignment="viewEnd"
-
-            android:layout_weight="1"></androidx.appcompat.widget.AppCompatTextView>
-
-        <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/text_expression"
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:textAlignment="viewEnd"
-            android:textSize="30sp"
-
-            android:layout_weight="1"></androidx.appcompat.widget.AppCompatTextView>
-
-        <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/text_result"
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:textAlignment="viewEnd"
-
-            android:layout_weight="1"></androidx.appcompat.widget.AppCompatTextView>
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="4">
+            android:layout_weight="1">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/text_expression"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textAlignment="viewEnd"
+                app:layout_constraintBottom_toTopOf="@+id/text_result"
+                ></androidx.appcompat.widget.AppCompatTextView>
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/text_result"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textAlignment="viewEnd"
+                app:layout_constraintBottom_toBottomOf="parent"
+                ></androidx.appcompat.widget.AppCompatTextView>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1">
 
             <!-- Row 1 -->
             <androidx.appcompat.widget.AppCompatButton

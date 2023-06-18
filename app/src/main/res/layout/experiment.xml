@@ -5,30 +5,36 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <androidx.appcompat.widget.AppCompatTextView
-        android:id="@+id/text_expression"
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="1"></androidx.appcompat.widget.AppCompatTextView>
+        android:layout_weight="1">
 
-    <androidx.appcompat.widget.AppCompatTextView
-        android:id="@+id/text_result"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"></androidx.appcompat.widget.AppCompatTextView>
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/text_expression"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:textAlignment="viewEnd"
+            android:text="Expression"
+            app:layout_constraintBottom_toTopOf="@id/text_result" />
 
-    <com.google.android.material.button.MaterialButton
-        android:id="@+id/myButton"
-        android:layout_width="134dp"
-        android:layout_height="wrap_content"
-        app:cornerRadius="4dp"
-        app:icon="@drawable/outline_backspace_24"
-        app:iconGravity="start" />
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/text_result"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:textAlignment="viewEnd"
+            android:text="fjskf fsmf ksfmf sfa kfa fa kfamfma  dam"
+            app:layout_constraintBottom_toBottomOf="parent" />
+
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="2">
+        android:layout_weight="1">
 
         <!-- Row 1 -->
         <androidx.appcompat.widget.AppCompatButton

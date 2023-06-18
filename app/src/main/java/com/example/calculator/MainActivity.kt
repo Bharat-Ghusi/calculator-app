@@ -2,6 +2,7 @@ package com.example.calculator
 
 import android.opengl.Visibility
 import android.os.Bundle
+import android.util.TypedValue
 import android.view.View
 import android.widget.Button
 import android.widget.TextView
@@ -29,6 +30,8 @@ class MainActivity : ComponentActivity() {
     private var operator: String = "+" //Default
     private val eval: Eval = Eval()
     private val evaluation: Evaluation = Evaluation()
+    private var isExpressionConsoleHighlighted = false
+    private var isResultConsoleHighlighted = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -66,12 +69,12 @@ class MainActivity : ComponentActivity() {
     }
 
     fun onDigitClick(view: View) {
+        isResultConsoleHighlighted = false
+        updateExpressionTvHighlight()
         val btn = (view as AppCompatButton)
         //        set textExpression tv visibility
-
-        binding.textExpression.visibility = View.VISIBLE // [BUG everytime setting visibility]
         //Dot Evaluation(frequency) if all set than concatenate
-        if (btn.text.toString() == "." && ! evaluation.dotEvaluate(view, binding)) {
+        if (btn.text.toString() == "." && !evaluation.dotEvaluate(view, binding)) {
             return
         } else
 
@@ -82,6 +85,8 @@ class MainActivity : ComponentActivity() {
     }
 
     fun onOperatorClick(view: View) {
+        isResultConsoleHighlighted = false
+        updateExpressionTvHighlight()
 //        set textExpression tv visibility
         binding.textExpression.visibility = View.VISIBLE
         evaluation.setOperator(view, binding)
@@ -89,18 +94,36 @@ class MainActivity : ComponentActivity() {
 //            binding.textExpression.text.toString() + (view as AppCompatImageButton).contentDescription
     }
 
+    private fun updateExpressionTvHighlight() {
+        //set expression console HIGHLIGHT
+        if(! isExpressionConsoleHighlighted){
+            isExpressionConsoleHighlighted = true
+            binding.textExpression.setTextSize(TypedValue.COMPLEX_UNIT_SP,40f)
+            binding.textResult.setTextSize(TypedValue.COMPLEX_UNIT_SP,25f)
+
+        }
+    }
+    private fun updateResultTvHighlight(){
+        //set Result console HIGHLIGHT
+        if (! isResultConsoleHighlighted){
+            isResultConsoleHighlighted = true
+            binding.textResult.setTextSize(TypedValue.COMPLEX_UNIT_SP,40f)
+            binding.textExpression.setTextSize(TypedValue.COMPLEX_UNIT_SP,25f)
+        }
+    }
 
     fun onEqualToClick(view: View) {
+        isExpressionConsoleHighlighted = false
+        updateResultTvHighlight()
+        //Make expression TV non highlight
         //case-1 remove dot or any operator if it is suffix of expression.
         val exp = binding.textExpression.text.toString()
-        if(! evaluation.evaluateEqualTo(binding.textExpression.text.toString())){
-            binding.textExpression.text = exp.substring(0,exp.length-1)
+        if (!evaluation.evaluateEqualTo(binding.textExpression.text.toString())) {
+            binding.textExpression.text = exp.substring(0, exp.length - 1)
         }
 
-            binding.textResult.text = "= " + eval.evaluate(binding.textExpression.text.toString())
-            binding.textExpression.text = binding.textResult.text.removePrefix("= ")
-            //Make expression TV invisible
-            binding.textExpression.visibility = View.INVISIBLE
+        binding.textResult.text = "= " + eval.evaluate(binding.textExpression.text.toString())
+        binding.textExpression.text = binding.textResult.text.removePrefix("= ")
 
 
     }
