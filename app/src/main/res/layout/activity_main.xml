@@ -3,240 +3,412 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
-
-    <androidx.constraintlayout.widget.ConstraintLayout
-
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
-        <!--        Line 1-->
+        android:layout_height="match_parent"
+        android:orientation="vertical">
 
-        <!--        Line 3-->
 
-        <TextView
-            android:id="@+id/text_history"
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="90dp"
-            android:layout_marginTop="80dp"
-            android:text="History"
-            android:textAlignment="textEnd"
-            android:textSize="40sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="1.0"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            android:layout_height="0dp"
+            android:layout_weight="1">
 
-        <TextView
-            android:id="@+id/text_expression"
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/text_expression"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textAlignment="viewEnd"
+                app:layout_constraintBottom_toTopOf="@+id/text_result"></androidx.appcompat.widget.AppCompatTextView>
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/text_result"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textAlignment="viewEnd"
+                app:layout_constraintBottom_toBottomOf="parent"></androidx.appcompat.widget.AppCompatTextView>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="90dp"
-            android:layout_marginTop="12dp"
-            android:textAlignment="textEnd"
-            android:textSize="40sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/text_history" />
+            android:layout_height="0dp"
+            android:layout_weight="1">
 
-        <TextView
-            android:id="@+id/text_result"
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:layout_marginTop="4dp"
-            android:text="@string/_0"
-            android:textAlignment="textEnd"
-            android:textSize="40sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="1.0"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/text_expression" />
+            <!-- Row 1 -->
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btn_2nd"
+                style="@style/style_advOpBtn"
+                android:text="2nd"
+                android:visibility="gone"
+                app:layout_constraintBottom_toTopOf="@id/btn_power"
+                app:layout_constraintEnd_toStartOf="@id/btn_deg"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
-        <Button
-            android:id="@+id/btn_ac"
-            style="@style/style_secondaryBtn"
-            android:text="@string/ac"
-            app:layout_constraintBaseline_toBaselineOf="@+id/btn_modulo"
-            app:layout_constraintEnd_toStartOf="@+id/btn_backspace"
-            app:layout_constraintStart_toStartOf="parent"></Button>
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btn_deg"
+                style="@style/style_advOpBtn"
+                android:text="deg"
+                android:visibility="gone"
+                app:layout_constraintBottom_toTopOf="@id/btn_log"
+                app:layout_constraintEnd_toStartOf="@id/btn_sin"
+                app:layout_constraintStart_toEndOf="@id/btn_2nd"
+                app:layout_constraintTop_toTopOf="parent" />
 
-        <Button
-            android:id="@+id/btn_backspace"
-            style="@style/style_secondaryBtn"
-            android:src="@drawable/backspace"
-            android:text="@string/backspace"
-            app:layout_constraintEnd_toStartOf="@+id/btn_modulo"
-            app:layout_constraintStart_toEndOf="@+id/btn_ac"
-            app:layout_constraintBottom_toTopOf="@+id/btn_9"></Button>
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btn_sin"
+                style="@style/style_advOpBtn"
+                android:text="sin"
+                android:visibility="gone"
+                app:layout_constraintBottom_toTopOf="@id/btn_ln"
+                app:layout_constraintEnd_toStartOf="@id/btn_cos"
+                app:layout_constraintStart_toEndOf="@id/btn_deg"
+                app:layout_constraintTop_toTopOf="parent" />
 
-        <Button
-            android:id="@+id/btn_modulo"
-            style="@style/style_secondaryBtn"
-            android:text="@string/modulo"
-            android:onClick="onOperatorClick"
-            app:layout_constraintBottom_toTopOf="@+id/btn_9"
-            app:layout_constraintEnd_toStartOf="@+id/btn_divide"
-            app:layout_constraintStart_toEndOf="@id/btn_backspace"></Button>
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btn_cos"
+                style="@style/style_advOpBtn"
+                android:text="cos"
+                android:visibility="gone"
+                app:layout_constraintBottom_toTopOf="@id/btn_openBracket"
+                app:layout_constraintEnd_toStartOf="@+id/btn_tan"
+                app:layout_constraintStart_toEndOf="@id/btn_sin"
+                app:layout_constraintTop_toTopOf="parent" />
 
-        <Button
-            android:id="@+id/btn_divide"
-            style="@style/style_imgBtn"
-            android:text="@string/divide"
-            android:onClick="onOperatorClick"
-            android:src="@drawable/divide"
-            app:layout_constraintBottom_toTopOf="@id/btn_product"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/btn_modulo"></Button>
-        <!--        Line 4-->
-        <Button
-            android:id="@+id/btn_7"
-            style="@style/style_primaryBtn"
-            android:text="@string/_7"
-            android:onClick="onDigitClick"
-            app:layout_constraintBaseline_toBaselineOf="@+id/btn_9"
-            app:layout_constraintEnd_toStartOf="@+id/btn_8"
-            app:layout_constraintStart_toStartOf="parent"></Button>
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btn_tan"
+                style="@style/style_advOpBtn"
+                android:text="tan"
+                android:visibility="gone"
+                app:layout_constraintBottom_toTopOf="@id/btn_closeBracket"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/btn_cos"
+                app:layout_constraintTop_toTopOf="parent" />
 
-        <Button
-            android:id="@+id/btn_8"
-            style="@style/style_primaryBtn"
-            android:text="@string/_8"
-            android:onClick="onDigitClick"
-            app:layout_constraintEnd_toStartOf="@+id/btn_9"
-            app:layout_constraintStart_toEndOf="@+id/btn_7"
-            app:layout_constraintBaseline_toBaselineOf="@+id/btn_9"
-            ></Button>
+            <!-- Row 2 -->
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btn_power"
+                style="@style/style_advOpBtn"
+                android:text="^"
+                android:visibility="gone"
+                app:layout_constraintBottom_toTopOf="@id/btn_root"
+                app:layout_constraintEnd_toStartOf="@id/btn_log"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/btn_2nd" />
 
-        <Button
-            android:id="@+id/btn_9"
-            style="@style/style_primaryBtn"
-            android:text="@string/_9"
-            android:onClick="onDigitClick"
-            app:layout_constraintBottom_toTopOf="@id/btn_6"
-            app:layout_constraintEnd_toStartOf="@+id/btn_product"
-            app:layout_constraintStart_toEndOf="@id/btn_8"></Button>
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btn_log"
+                style="@style/style_advOpBtn"
+                android:text="log"
+                android:visibility="gone"
+                app:layout_constraintBottom_toTopOf="@id/btn_ac"
+                app:layout_constraintEnd_toStartOf="@id/btn_ln"
+                app:layout_constraintStart_toEndOf="@id/btn_power"
+                app:layout_constraintTop_toBottomOf="@id/btn_deg" />
 
-        <!--        Line 5-->
-        <Button
-            android:id="@+id/btn_product"
-            style="@style/style_secondaryBtn"
-            android:text="@string/x"
-            android:onClick="onOperatorClick"
-            app:layout_constraintBaseline_toBaselineOf="@+id/btn_9"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/btn_9"></Button>
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btn_ln"
+                style="@style/style_advOpBtn"
+                android:text="ln"
+                android:visibility="gone"
+                app:layout_constraintBottom_toTopOf="@id/btn_backspace"
+                app:layout_constraintEnd_toStartOf="@id/btn_openBracket"
+                app:layout_constraintStart_toEndOf="@id/btn_log"
+                app:layout_constraintTop_toBottomOf="@id/btn_sin" />
 
-        <Button
-            android:id="@+id/btn_4"
-            style="@style/style_primaryBtn"
-            android:text="@string/_4"
-            android:onClick="onDigitClick"
-            app:layout_constraintBaseline_toBaselineOf="@+id/btn_6"
-            app:layout_constraintEnd_toStartOf="@+id/btn_5"
-            app:layout_constraintStart_toStartOf="parent"></Button>
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btn_openBracket"
+                style="@style/style_advOpBtn"
+                android:text="("
+                android:visibility="gone"
+                app:layout_constraintBottom_toTopOf="@id/btn_modulo"
+                app:layout_constraintEnd_toStartOf="@id/btn_closeBracket"
+                app:layout_constraintStart_toEndOf="@id/btn_ln"
+                app:layout_constraintTop_toBottomOf="@id/btn_cos" />
 
-        <Button
-            android:id="@+id/btn_5"
-            style="@style/style_primaryBtn"
-            android:text="@string/_5"
-            android:onClick="onDigitClick"
-            app:layout_constraintEnd_toStartOf="@+id/btn_6"
-            app:layout_constraintStart_toEndOf="@+id/btn_4"
-            app:layout_constraintBaseline_toBaselineOf="@+id/btn_6"></Button>
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btn_closeBracket"
+                style="@style/style_advOpBtn"
+                android:text=")"
+                android:visibility="gone"
+                app:layout_constraintBottom_toTopOf="@id/btn_divide"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/btn_openBracket"
+                app:layout_constraintTop_toBottomOf="@id/btn_tan" />
 
-        <Button
-            android:id="@+id/btn_6"
-            style="@style/style_primaryBtn"
-            android:text="@string/_6"
-            android:onClick="onDigitClick"
-           app:layout_constraintBottom_toTopOf="@+id/btn_3"
-            app:layout_constraintEnd_toStartOf="@+id/btn_minus"
-            app:layout_constraintStart_toEndOf="@id/btn_5"></Button>
+            <!-- Row 3 -->
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btn_root"
+                style="@style/style_advOpBtn"
+                android:text="@string/root"
+                android:visibility="gone"
+                app:layout_constraintBottom_toTopOf="@+id/btn_factor"
+                app:layout_constraintEnd_toStartOf="@id/btn_ac"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/btn_power" />
 
-        <Button
-            android:id="@+id/btn_minus"
-            style="@style/style_secondaryBtn"
-            android:text="@string/minus"
-            android:onClick="onOperatorClick"
-            app:layout_constraintBaseline_toBaselineOf="@+id/btn_6"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/btn_6"></Button>
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btn_ac"
+                style="@style/style_primaryBtn_special"
+                android:onClick="onClearScreen"
+                android:text="@string/c"
+                android:textStyle="normal"
+                app:layout_constraintBottom_toTopOf="@id/btn_7"
+                app:layout_constraintEnd_toStartOf="@id/btn_backspace"
+                app:layout_constraintStart_toEndOf="@id/btn_root"
+                app:layout_constraintTop_toBottomOf="@id/btn_log" />
 
-        <!--        Line 6-->
-        <Button
-            android:id="@+id/btn_1"
-            style="@style/style_primaryBtn"
-            android:text="@string/_1"
-            android:onClick="onDigitClick"
-            app:layout_constraintBaseline_toBaselineOf="@+id/btn_3"
-            app:layout_constraintEnd_toStartOf="@+id/btn_2"
-            app:layout_constraintStart_toStartOf="parent"></Button>
+            <androidx.appcompat.widget.AppCompatImageButton
+                android:id="@+id/btn_backspace"
+                style="@style/style_iconBtn"
+                android:onClick="onBackSpaceClick"
+                android:src="@drawable/backspace"
+                app:layout_constraintBottom_toTopOf="@+id/btn_8"
+                app:layout_constraintEnd_toStartOf="@id/btn_modulo"
+                app:layout_constraintStart_toEndOf="@id/btn_ac"
+                app:layout_constraintTop_toBottomOf="@id/btn_ln" />
 
-        <Button
-            android:id="@+id/btn_2"
-            style="@style/style_primaryBtn"
-            android:text="@string/_2"
-            android:onClick="onDigitClick"
-            app:layout_constraintEnd_toStartOf="@+id/btn_3"
-            app:layout_constraintStart_toEndOf="@+id/btn_1"
-            app:layout_constraintBaseline_toBaselineOf="@+id/btn_3"></Button>
+            <androidx.appcompat.widget.AppCompatImageButton
+                android:id="@+id/btn_modulo"
+                style="@style/style_iconBtn"
+                android:contentDescription="@string/modulo"
+                android:onClick="onOperatorClick"
+                android:src="@drawable/modulo"
+                app:layout_constraintBottom_toTopOf="@id/btn_9"
+                app:layout_constraintEnd_toStartOf="@+id/btn_divide"
+                app:layout_constraintStart_toEndOf="@id/btn_backspace"
+                app:layout_constraintTop_toBottomOf="@id/btn_openBracket" />
 
-        <Button
-            android:id="@+id/btn_3"
-            style="@style/style_primaryBtn"
-            android:text="@string/_3"
-            android:onClick="onDigitClick"
-           app:layout_constraintBottom_toTopOf="@+id/btn_dot"
-            app:layout_constraintEnd_toStartOf="@+id/btn_plus"
-            app:layout_constraintStart_toEndOf="@id/btn_2"></Button>
+            <androidx.appcompat.widget.AppCompatImageButton
+                android:id="@+id/btn_divide"
+                style="@style/style_iconBtn"
+                android:contentDescription="@string/divide"
+                android:onClick="onOperatorClick"
+                android:src="@drawable/division"
+                app:layout_constraintBottom_toTopOf="@id/btn_product"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/btn_modulo"
+                app:layout_constraintTop_toBottomOf="@id/btn_closeBracket" />
 
-        <Button
-            android:id="@+id/btn_plus"
-            style="@style/style_secondaryBtn"
-            android:text="@string/plus"
-            android:onClick="onOperatorClick"
-            app:layout_constraintBaseline_toBaselineOf="@+id/btn_3"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/btn_3"></Button>
+            <!-- Row 4 -->
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btn_factor"
+                style="@style/style_advOpBtn"
+                android:text="!"
+                android:visibility="gone"
+                app:layout_constraintBottom_toTopOf="@id/btn_unknown"
+                app:layout_constraintEnd_toStartOf="@id/btn_7"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/btn_root" />
 
-        <!--        Line 7-->
-        <Button
-            android:id="@+id/btn_expand"
-            style="@style/style_secondaryBtn"
-            android:text="@string/exp"
-            app:layout_constraintBaseline_toBaselineOf="@+id/btn_dot"
-            app:layout_constraintEnd_toStartOf="@+id/btn_0"
-            app:layout_constraintStart_toStartOf="parent"></Button>
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btn_7"
+                style="@style/style_numberBtn"
+                android:onClick="onDigitClick"
+                android:text="7"
+                app:layout_constraintBottom_toTopOf="@id/btn_4"
+                app:layout_constraintEnd_toStartOf="@id/btn_8"
+                app:layout_constraintStart_toEndOf="@id/btn_factor"
+                app:layout_constraintTop_toBottomOf="@id/btn_ac" />
 
-        <Button
-            android:id="@+id/btn_0"
-            style="@style/style_primaryBtn"
-            android:text="@string/_0"
-            android:onClick="onDigitClick"
-            app:layout_constraintBaseline_toBaselineOf="@+id/btn_dot"
-            app:layout_constraintEnd_toStartOf="@+id/btn_dot"
-            app:layout_constraintStart_toEndOf="@+id/btn_expand"
-           ></Button>
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btn_8"
+                style="@style/style_numberBtn"
+                android:onClick="onDigitClick"
+                android:text="8"
+                app:layout_constraintBottom_toTopOf="@id/btn_5"
+                app:layout_constraintEnd_toStartOf="@id/btn_9"
+                app:layout_constraintStart_toEndOf="@id/btn_7"
+                app:layout_constraintTop_toBottomOf="@id/btn_backspace" />
 
-        <Button
-            android:id="@+id/btn_dot"
-            style="@style/style_primaryBtn"
-            android:text="@string/dot"
-            android:onClick="onDigitClick"
-            android:textStyle="bold"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/btn_equalTO"
-            app:layout_constraintStart_toEndOf="@id/btn_0"></Button>
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btn_9"
+                style="@style/style_numberBtn"
+                android:onClick="onDigitClick"
+                android:text="9"
+                app:layout_constraintBottom_toTopOf="@id/btn_6"
+                app:layout_constraintEnd_toStartOf="@+id/btn_product"
+                app:layout_constraintStart_toEndOf="@id/btn_8"
+                app:layout_constraintTop_toBottomOf="@id/btn_modulo" />
 
-        <Button
-            android:id="@+id/btn_equalTO"
-            style="@style/style_secondaryBtn"
-            android:text="@string/equalTo"
-            android:onClick="onEqualToClick"
-            app:layout_constraintBaseline_toBaselineOf="@+id/btn_dot"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/btn_dot"
-            ></Button>
+            <androidx.appcompat.widget.AppCompatImageButton
+                android:id="@+id/btn_product"
+                style="@style/style_iconBtn"
+                android:contentDescription="@string/x"
+                android:onClick="onOperatorClick"
+                android:src="@drawable/cross"
+                android:textSize="30sp"
+                app:layout_constraintBottom_toTopOf="@id/btn_minus"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/btn_9"
+                app:layout_constraintTop_toBottomOf="@id/btn_divide" />
+            <!-- Row 5 -->
 
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btn_unknown"
+                style="@style/style_advOpBtn"
+                android:text="1/x"
+                android:visibility="gone"
+                app:layout_constraintBottom_toTopOf="@id/btn_pi"
+                app:layout_constraintEnd_toStartOf="@id/btn_4"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/btn_factor" />
 
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btn_4"
+                style="@style/style_numberBtn"
+                android:onClick="onDigitClick"
+                android:text="4"
+                app:layout_constraintBottom_toTopOf="@id/btn_1"
+                app:layout_constraintEnd_toStartOf="@id/btn_5"
+                app:layout_constraintStart_toEndOf="@id/btn_unknown"
+                app:layout_constraintTop_toBottomOf="@id/btn_7" />
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btn_5"
+                style="@style/style_numberBtn"
+                android:onClick="onDigitClick"
+                android:text="5"
+                app:layout_constraintBottom_toTopOf="@id/btn_2"
+                app:layout_constraintEnd_toStartOf="@id/btn_6"
+                app:layout_constraintStart_toEndOf="@id/btn_4"
+                app:layout_constraintTop_toBottomOf="@id/btn_8" />
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btn_6"
+                style="@style/style_numberBtn"
+                android:onClick="onDigitClick"
+                android:text="6"
+                app:layout_constraintBottom_toTopOf="@id/btn_3"
+                app:layout_constraintEnd_toStartOf="@+id/btn_minus"
+                app:layout_constraintStart_toEndOf="@id/btn_5"
+                app:layout_constraintTop_toBottomOf="@id/btn_9" />
+
+            <androidx.appcompat.widget.AppCompatImageButton
+                android:id="@+id/btn_minus"
+                style="@style/style_iconBtn"
+                android:contentDescription="@string/minus"
+                android:onClick="onOperatorClick"
+                android:src="@drawable/minus"
+                android:textSize="40sp"
+                app:layout_constraintBottom_toTopOf="@id/btn_plus"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/btn_6"
+                app:layout_constraintTop_toBottomOf="@id/btn_product" />
+
+            <!-- Row 6 -->
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btn_pi"
+                style="@style/style_advOpBtn"
+                android:text="@string/pi"
+                android:visibility="gone"
+                app:layout_constraintBottom_toTopOf="@id/btn_e"
+                app:layout_constraintEnd_toStartOf="@id/btn_1"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/btn_unknown" />
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btn_1"
+                style="@style/style_numberBtn"
+                android:onClick="onDigitClick"
+                android:text="1"
+                app:layout_constraintBottom_toTopOf="@id/btn_expand"
+                app:layout_constraintEnd_toStartOf="@id/btn_2"
+                app:layout_constraintStart_toEndOf="@id/btn_pi"
+                app:layout_constraintTop_toBottomOf="@id/btn_4" />
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btn_2"
+                style="@style/style_numberBtn"
+                android:onClick="onDigitClick"
+                android:text="2"
+                app:layout_constraintBottom_toTopOf="@id/btn_0"
+                app:layout_constraintEnd_toStartOf="@id/btn_3"
+                app:layout_constraintStart_toEndOf="@id/btn_1"
+                app:layout_constraintTop_toBottomOf="@id/btn_5" />
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btn_3"
+                style="@style/style_numberBtn"
+                android:onClick="onDigitClick"
+                android:text="3"
+                app:layout_constraintBottom_toTopOf="@id/btn_dot"
+                app:layout_constraintEnd_toStartOf="@+id/btn_plus"
+                app:layout_constraintStart_toEndOf="@id/btn_2"
+                app:layout_constraintTop_toBottomOf="@id/btn_6" />
+
+            <androidx.appcompat.widget.AppCompatImageButton
+                android:id="@+id/btn_plus"
+                style="@style/style_iconBtn"
+                android:contentDescription="@string/plus"
+                android:onClick="onOperatorClick"
+                android:src="@drawable/plus"
+                app:layout_constraintBottom_toTopOf="@id/btn_equalTo"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/btn_3"
+                app:layout_constraintTop_toBottomOf="@id/btn_minus" />
+
+            <!-- Row 7 -->
+
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btn_e"
+                style="@style/style_advOpBtn"
+                android:text="e"
+                android:visibility="gone"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@id/btn_expand"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/btn_pi" />
+
+            <androidx.appcompat.widget.AppCompatImageButton
+                android:id="@+id/btn_expand"
+                style="@style/style_iconBtn"
+                android:padding="7dp"
+                android:src="@drawable/baseline_expand_circle_down_24"
+                android:onClick="onExpandClick"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@id/btn_0"
+                app:layout_constraintStart_toEndOf="@id/btn_e"
+                app:layout_constraintTop_toBottomOf="@id/btn_1" />
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btn_0"
+                style="@style/style_numberBtn"
+                android:onClick="onDigitClick"
+                android:text="0"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@id/btn_dot"
+                app:layout_constraintStart_toEndOf="@id/btn_expand"
+                app:layout_constraintTop_toBottomOf="@id/btn_2" />
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btn_dot"
+                style="@style/style_numberBtn"
+                android:onClick="onDigitClick"
+                android:text="."
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/btn_equalTo"
+                app:layout_constraintStart_toEndOf="@id/btn_0"
+                app:layout_constraintTop_toBottomOf="@id/btn_3" />
+
+            <androidx.appcompat.widget.AppCompatImageButton
+                android:id="@+id/btn_equalTo"
+                style="@style/style_iconBtn"
+                android:contentDescription="@string/equalTo"
+                android:onClick="onEqualToClick"
+                android:padding="10dp"
+                android:src="@drawable/equal"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/btn_dot"
+                app:layout_constraintTop_toBottomOf="@id/btn_plus" />
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </LinearLayout>
 </layout>

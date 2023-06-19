@@ -8,7 +8,7 @@ class Eval {
 
 
     private fun findPrecedence(char: Char): Pair<Int, Boolean> {
-        return if (char.lowercaseChar() == 'x' || char == '/' || char == '%') Pair(
+        return if (char.lowercaseChar() == 'x' || char == '÷' || char == '%') Pair(
             3,
             true
         ) else if (char == '+' || char == '-') Pair(4, true) else Pair(20, false) //If digit
@@ -86,7 +86,7 @@ class Eval {
         return when (exp[operatorIndex]) {
             '+' -> num1.toDouble() + num2.toDouble()
             '-' -> num1.toDouble() - num2.toDouble()
-            '/' -> if (num2.toDouble() != 0.0) num1.toDouble() / num2.toDouble() else throw ArithmeticException(
+            '÷' -> if (num2.toDouble() != 0.0) num1.toDouble() / num2.toDouble() else throw ArithmeticException(
                 "Cannot divide by zero."
             )
 
