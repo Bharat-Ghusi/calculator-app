@@ -8,6 +8,7 @@ import android.widget.Button
 import android.widget.TextView
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import androidx.annotation.DrawableRes
 import androidx.appcompat.widget.AppCompatButton
 import androidx.appcompat.widget.AppCompatImageButton
 import androidx.compose.foundation.layout.fillMaxSize
@@ -32,6 +33,7 @@ class MainActivity : ComponentActivity() {
     private val evaluation: Evaluation = Evaluation()
     private var isExpressionConsoleHighlighted = false
     private var isResultConsoleHighlighted = false
+    private var isExpandClicked: Boolean = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -77,22 +79,21 @@ class MainActivity : ComponentActivity() {
         if (btn.text.toString() == "." && !evaluation.dotEvaluate(view, binding)) {
             return
         } else
-            //After equalTo if digit is press then start the expression from fresh
-        if(binding.textResult.text.isNotEmpty()){
-            binding.textResult.text = ""
-            binding.textExpression.text = (view as Button).text
-        }
-        else
-        //Set on exp Tv (Concatenating digit & dot)
+        //After equalTo if digit is press then start the expression from fresh
+            if (binding.textResult.text.isNotEmpty()) {
+                binding.textResult.text = ""
+                binding.textExpression.text = (view as Button).text
+            } else
+            //Set on exp Tv (Concatenating digit & dot)
 
-            binding.textExpression.text =
-                binding.textExpression.text.toString() + (view as Button).text
+                binding.textExpression.text =
+                    binding.textExpression.text.toString() + (view as Button).text
 
     }
 
     fun onOperatorClick(view: View) {
         //After equalTo if operator is press then concat the result and operator and set it to expression
-        if(binding.textResult.text.isNotEmpty()){
+        if (binding.textResult.text.isNotEmpty()) {
             binding.textExpression.text = binding.textResult.text.removePrefix("= ")
             binding.textResult.text = ""
         }
@@ -107,19 +108,20 @@ class MainActivity : ComponentActivity() {
 
     private fun updateExpressionTvHighlight() {
         //set expression console HIGHLIGHT
-        if(! isExpressionConsoleHighlighted){
+        if (!isExpressionConsoleHighlighted) {
             isExpressionConsoleHighlighted = true
-            binding.textExpression.setTextSize(TypedValue.COMPLEX_UNIT_SP,40f)
-            binding.textResult.setTextSize(TypedValue.COMPLEX_UNIT_SP,25f)
+            binding.textExpression.setTextSize(TypedValue.COMPLEX_UNIT_SP, 40f)
+            binding.textResult.setTextSize(TypedValue.COMPLEX_UNIT_SP, 25f)
 
         }
     }
-    private fun updateResultTvHighlight(){
+
+    private fun updateResultTvHighlight() {
         //set Result console HIGHLIGHT
-        if (! isResultConsoleHighlighted){
+        if (!isResultConsoleHighlighted) {
             isResultConsoleHighlighted = true
-            binding.textResult.setTextSize(TypedValue.COMPLEX_UNIT_SP,40f)
-            binding.textExpression.setTextSize(TypedValue.COMPLEX_UNIT_SP,25f)
+            binding.textResult.setTextSize(TypedValue.COMPLEX_UNIT_SP, 40f)
+            binding.textExpression.setTextSize(TypedValue.COMPLEX_UNIT_SP, 25f)
         }
     }
 
@@ -129,7 +131,8 @@ class MainActivity : ComponentActivity() {
         //Make expression TV non highlight
         //case-1 remove dot or any operator if it is suffix of expression.
         while (!evaluation.evaluateEqualTo(binding.textExpression.text.toString())) {
-            binding.textExpression.text = binding.textExpression.text.substring(0, binding.textExpression.text.length - 1)
+            binding.textExpression.text =
+                binding.textExpression.text.substring(0, binding.textExpression.text.length - 1)
         }
 
         binding.textResult.text = "= " + eval.evaluate(binding.textExpression.text.toString())
@@ -157,11 +160,51 @@ class MainActivity : ComponentActivity() {
     }
 
     fun onExpandClick(view: View) {
-       //Make all special button visible
+        //Make all special button visible
+        if (!isExpandClicked) {
+            binding.run {
+                btn2nd.visibility = View.VISIBLE
+                btnDeg.visibility = View.VISIBLE
+                btnSin.visibility = View.VISIBLE
+                btnCos.visibility = View.VISIBLE
+                btnTan.visibility = View.VISIBLE
+                btnPower.visibility = View.VISIBLE
+                btnLog.visibility = View.VISIBLE
+                btnLn.visibility = View.VISIBLE
+                btnOpenBracket.visibility = View.VISIBLE
+                btnCloseBracket.visibility = View.VISIBLE
+                btnRoot.visibility = View.VISIBLE
+                btnFactor.visibility = View.VISIBLE
+                btnUnknown.visibility = View.VISIBLE
+                btnPi.visibility = View.VISIBLE
+                btnE.visibility = View.VISIBLE
 
+                btnExpand.setImageResource(R.drawable.up_arrow)
+                isExpandClicked = true
+            }
+        } else { //Make all special button Invisible
+            binding.run {
+                btn2nd.visibility = View.GONE
+                btnDeg.visibility = View.GONE
+                btnSin.visibility = View.GONE
+                btnCos.visibility = View.GONE
+                btnTan.visibility = View.GONE
+                btnPower.visibility = View.GONE
+                btnLog.visibility = View.GONE
+                btnLn.visibility = View.GONE
+                btnOpenBracket.visibility = View.GONE
+                btnCloseBracket.visibility = View.GONE
+                btnRoot.visibility = View.GONE
+                btnFactor.visibility = View.GONE
+                btnUnknown.visibility = View.GONE
+                btnPi.visibility = View.GONE
+                btnE.visibility = View.GONE
+                //
+                btnExpand.setImageResource(R.drawable.down_arrow)
+                isExpandClicked = false
+            }
+        }
 
     }
-
-
 }
 

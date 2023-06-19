@@ -367,8 +367,8 @@
             <androidx.appcompat.widget.AppCompatImageButton
                 android:id="@+id/btn_expand"
                 style="@style/style_iconBtn"
-                android:padding="7dp"
-                android:src="@drawable/baseline_expand_circle_down_24"
+                android:padding="10dp"
+                android:src="@drawable/down_arrow"
                 android:onClick="onExpandClick"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toStartOf="@id/btn_0"
