@@ -97,9 +97,10 @@ class MainActivity : ComponentActivity() {
             binding.textExpression.text = binding.textResult.text.removePrefix("= ")
             binding.textResult.text = ""
         }
-
+        //Highlight console tv
         isResultConsoleHighlighted = false
         updateExpressionTvHighlight()
+
 //        set textExpression tv visibility
         evaluation.setOperator(view, binding)
 //        binding.textExpression.text =

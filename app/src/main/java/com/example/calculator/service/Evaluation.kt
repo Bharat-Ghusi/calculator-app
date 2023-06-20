@@ -29,6 +29,8 @@ class Evaluation {
             '÷' -> true
             'x' -> true
             '%' -> true
+            '(' -> true
+            ')' -> true
             else -> {
                 false
             }
